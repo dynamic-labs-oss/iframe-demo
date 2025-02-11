@@ -6,7 +6,6 @@ import styles from '../styles/Home.module.css';
 
 
 const Home: NextPage = () => {
-
   return (
     <div className={styles.container}>
       <Head>
@@ -19,14 +18,16 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to the Global wallet demo
-        </h1>
-         <ConnectButton /> 
+        <iframe 
+          src="https://eclipse-demo-liart.vercel.app/"
+          width="100%"
+          height="800px"
+          style={{ border: 'none', marginTop: '2rem' }}
+          title="Doodles Demo"
+        />
       </main>
     </div>
   );
 };
 
 export default Home;
-
