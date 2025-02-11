@@ -3,9 +3,11 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-
+import { useState } from 'react';
 
 const Home: NextPage = () => {
+  const [activeTab, setActiveTab] = useState('rainbowkit');
+
   return (
     <div className={styles.container}>
       <Head>
@@ -18,20 +20,59 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <iframe 
-          src="https://doodles-demo.vercel.app/"
-          width="100%"
-          height="400px"
-          style={{ border: 'none' }}
-          title="Doodles Demo"
-        />
-        <iframe 
-          src="https://basic-demo-repo.vercel.app/"
-          width="100%"
-          height="400px"
-          style={{ border: 'none' }}
-          title="Doodles Demo"
-        />
+        <div style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ padding: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <button 
+                onClick={() => setActiveTab('rainbowkit')}
+                style={{
+                  padding: '0.5rem 1rem',
+                  backgroundColor: activeTab === 'rainbowkit' ? '#4F46E5' : '#E5E7EB',
+                  color: activeTab === 'rainbowkit' ? 'white' : 'black',
+                  border: 'none',
+                  borderRadius: '0.375rem',
+                  cursor: 'pointer'
+                }}
+              >
+                Rainbowkit
+              </button>
+              <button
+                onClick={() => setActiveTab('dynamic')}
+                style={{
+                  padding: '0.5rem 1rem',
+                  backgroundColor: activeTab === 'dynamic' ? '#4F46E5' : '#E5E7EB',
+                  color: activeTab === 'dynamic' ? 'white' : 'black',
+                  border: 'none',
+                  borderRadius: '0.375rem',
+                  cursor: 'pointer'
+                }}
+              >
+                Dynamic
+              </button>
+            </div>
+          </div>
+          
+          <div style={{ flex: 1 }}>
+            {activeTab === 'rainbowkit' && (
+              <iframe 
+                src="https://doodles-demo.vercel.app/"
+                width="100%"
+                height="95%"
+                style={{ border: 'none' }}
+                title="Rainbowkit Demo"
+              />
+            )}
+            {activeTab === 'dynamic' && (
+              <iframe 
+                src="https://basic-demo-repo.vercel.app/"
+                width="100%"
+                height="95%"
+                style={{ border: 'none' }}
+                title="Dynamic Demo"
+              />
+            )}
+          </div>
+        </div>
       </main>
     </div>
   );
