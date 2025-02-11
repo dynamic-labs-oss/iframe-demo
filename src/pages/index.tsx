@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <iframe 
-          src="https://eclipse-demo-liart.vercel.app/"
+          src="https://doodles-demo.vercel.app/"
           width="100%"
           height="800px"
           style={{ border: 'none', marginTop: '2rem' }}

@@ -10,8 +10,8 @@ import {
   sepolia,
 } from 'wagmi/chains';
 
-// Create the config
-const config = getDefaultConfig({
+
+export const config = getDefaultConfig({
   appName: 'RainbowKit App',
   projectId: 'YOUR_PROJECT_ID',
   chains: [
@@ -24,5 +24,3 @@ const config = getDefaultConfig({
   ],
   ssr: true,
 });
-
-export { config };
