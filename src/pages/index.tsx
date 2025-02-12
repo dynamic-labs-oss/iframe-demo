@@ -34,7 +34,7 @@ const Home: NextPage = () => {
                   cursor: 'pointer'
                 }}
               >
-                Rainbowkit
+                Dynamic v3
               </button>
               <button
                 onClick={() => setActiveTab('dynamic')}
@@ -47,7 +47,7 @@ const Home: NextPage = () => {
                   cursor: 'pointer'
                 }}
               >
-                Dynamic
+                Dynamic v4
               </button>
             </div>
           </div>
@@ -55,7 +55,7 @@ const Home: NextPage = () => {
           <div style={{ flex: 1 }}>
             {activeTab === 'rainbowkit' && (
               <iframe 
-                src="https://doodles-demo.vercel.app/"
+                src="https://basic-demo-v3.vercel.app/"
                 width="100%"
                 height="95%"
                 style={{ border: 'none' }}
