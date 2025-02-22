@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css';
 import { useState, useEffect } from 'react';
 
 const Home: NextPage = () => {
-  const [activeTab, setActiveTab] = useState('rainbowkit');
+  const [activeTab, setActiveTab] = useState('dynamic');
 
   useEffect(() => {
     const handleMessage = async (event: MessageEvent) => {
