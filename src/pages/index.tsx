@@ -3,10 +3,35 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Home: NextPage = () => {
   const [activeTab, setActiveTab] = useState('rainbowkit');
+
+  useEffect(() => {
+    const handleMessage = async (event: MessageEvent) => {
+      if (event.data.type === "OPEN_DEEPLINK") {
+        if (event.data.link === "") {
+          return;
+        }
+
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        // handle deeplink for iOS Safari
+        if (isIOS && isSafari) {
+          // href has higher priority than window.open
+          window.location.href = event.data.link;
+        } else {
+          // For other browsers: Use window.open
+          window.open(event.data.link, "_blank");
+        }
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
   return (
     <div className={styles.container}>
