@@ -6,8 +6,6 @@ import styles from '../styles/Home.module.css';
 import { useState, useEffect } from 'react';
 
 const Home: NextPage = () => {
-  const [activeTab, setActiveTab] = useState('dynamic');
-
   useEffect(() => {
     const handleMessage = async (event: MessageEvent) => {
       if (event.data.type === "OPEN_DEEPLINK") {
@@ -46,56 +44,14 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <div style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ padding: '0.5rem' }}>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <button 
-                onClick={() => setActiveTab('rainbowkit')}
-                style={{
-                  padding: '0.5rem 1rem',
-                  backgroundColor: activeTab === 'rainbowkit' ? '#4F46E5' : '#E5E7EB',
-                  color: activeTab === 'rainbowkit' ? 'white' : 'black',
-                  border: 'none',
-                  borderRadius: '0.375rem',
-                  cursor: 'pointer'
-                }}
-              >
-                Dynamic v3
-              </button>
-              <button
-                onClick={() => setActiveTab('dynamic')}
-                style={{
-                  padding: '0.5rem 1rem',
-                  backgroundColor: activeTab === 'dynamic' ? '#4F46E5' : '#E5E7EB',
-                  color: activeTab === 'dynamic' ? 'white' : 'black',
-                  border: 'none',
-                  borderRadius: '0.375rem',
-                  cursor: 'pointer'
-                }}
-              >
-                Dynamic v4
-              </button>
-            </div>
-          </div>
-          
           <div style={{ flex: 1 }}>
-            {activeTab === 'rainbowkit' && (
-              <iframe 
-                src="https://basic-demo-v3.vercel.app/"
-                width="100%"
-                height="95%"
-                style={{ border: 'none' }}
-                title="Rainbowkit Demo"
-              />
-            )}
-            {activeTab === 'dynamic' && (
-              <iframe 
-                src="https://basic-demo-repo.vercel.app/"
-                width="100%"
-                height="95%"
-                style={{ border: 'none' }}
-                title="Dynamic Demo"
-              />
-            )}
+            <iframe 
+              src="https://basic-demo-repo.vercel.app/"
+              width="100%"
+              height="95%"
+              style={{ border: 'none' }}
+              title="Dynamic Demo"
+            />
           </div>
         </div>
       </main>
