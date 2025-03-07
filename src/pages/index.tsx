@@ -1,33 +1,24 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
-import { useState, useEffect } from 'react';
+import type { NextPage } from "next";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { useEffect, useRef } from "react";
+import { setupIframe } from "../setupIframe";
+
+const iframeUrl = new URL("https://basic-demo-repo.vercel.app/");
 
 const Home: NextPage = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
   useEffect(() => {
-    const handleMessage = async (event: MessageEvent) => {
-      if (event.data.type === "OPEN_DEEPLINK") {
-        if (event.data.link === "") {
-          return;
-        }
+    const iframe = iframeRef.current;
 
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (!iframe) return;
 
-        // handle deeplink for iOS Safari
-        if (isIOS && isSafari) {
-          // href has higher priority than window.open
-          window.location.href = event.data.link;
-        } else {
-          // For other browsers: Use window.open
-          window.open(event.data.link, "_blank");
-        }
-      }
+    const cleanUp = setupIframe(iframe, iframeUrl.origin);
+
+    return () => {
+      cleanUp();
     };
-
-    window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
   }, []);
 
   return (
@@ -37,14 +28,22 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <div style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <div
+          style={{
+            width: "100%",
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <div style={{ flex: 1 }}>
-            <iframe 
-              src="https://basic-demo-repo.vercel.app/"
+            <iframe
+              src={iframeUrl.toString()}
               width="100%"
               height="95%"
-              style={{ border: 'none' }}
+              style={{ border: "none" }}
               title="Dynamic Demo"
+              ref={iframeRef}
             />
           </div>
         </div>
