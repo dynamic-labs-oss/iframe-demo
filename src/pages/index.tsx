@@ -43,6 +43,7 @@ const Home: NextPage = () => {
               height="95%"
               style={{ border: "none" }}
               title="Dynamic Demo"
+              sandbox="allow-scripts allow-same-origin"
               ref={iframeRef}
             />
           </div>
