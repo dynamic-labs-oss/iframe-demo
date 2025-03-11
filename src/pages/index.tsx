@@ -44,6 +44,7 @@ const Home: NextPage = () => {
               style={{ border: "none" }}
               title="Dynamic Demo"
               ref={iframeRef}
+              allow="clipboard-read; clipboard-write"
             />
           </div>
         </div>
