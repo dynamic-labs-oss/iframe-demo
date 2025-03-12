@@ -6,6 +6,10 @@ import { setupIframe } from "../setupIframe";
 
 const iframeUrl = new URL("https://basic-demo-repo.vercel.app/");
 
+if (typeof window !== "undefined") {
+  iframeUrl.searchParams.set("initial-parent-url", window.location.href);
+}
+
 const Home: NextPage = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
