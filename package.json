@@ -8,7 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@dynamic-labs/global-wallet-client": "^4.4.3",
+    "@dynamic-labs/global-wallet-client": "^4.9.3",
+    "@dynamic-labs/iframe-setup": "^4.9.3",
     "@rainbow-me/rainbowkit": "^2.2.3",
     "@tanstack/react-query": "^5.55.3",
     "next": "^15.1.4",
